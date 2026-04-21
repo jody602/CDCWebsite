@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Gallery | Countrywide Development & Contracting, Inc.</title>
+  <meta name="description" content="Photo gallery of completed commercial and residential construction projects by Countrywide Development & Contracting, Inc. — Los Angeles County's trusted general contractor. CSLB #800028.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.countrywidedevelopment.com/gallery.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:      #080808;
+      --charcoal:   #1C1C1C;
+      --dark-gray:  #2E2E2E;
+      --mid-gray:   #6A6A6A;
+      --light-gray: #F4F4F2;
+      --border:     #E6E6E4;
+      --white:      #FFFFFF;
+      --gold:       #B8962E;
+      --gold-light: #D4B050;
+      --gold-dark:  #8A6E1E;
+      --gold-pale:  #F5EDD6;
+      --font-head:  'Montserrat', sans-serif;
+      --font-body:  'Inter', sans-serif;
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+      --t:    0.3s;
+      --shadow: 0 6px 28px rgba(0,0,0,0.10);
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-body);
+      color: var(--charcoal);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; height: auto; display: block; }
+
+    .container { max-width: 1220px; margin: 0 auto; padding: 0 28px; }
+
+    /* ===== HEADER ===== */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 900;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid transparent;
+      transition: border-color var(--t), box-shadow var(--t);
+    }
+    .site-header.scrolled {
+      border-color: var(--border);
+      box-shadow: 0 2px 24px rgba(0,0,0,0.08);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 74px;
+    }
+    .logo { display: flex; flex-direction: column; line-height: 1.2; gap: 2px; }
+    .logo-main {
+      font-family: var(--font-head);
+      font-size: 14.5px;
+      font-weight: 900;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--black);
+    }
+    .logo-sub {
+      font-family: var(--font-head);
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .main-nav { display: flex; align-items: center; gap: 34px; }
+    .nav-link {
+      font-family: var(--font-head);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0; right: 0;
+      height: 1.5px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform var(--t) var(--ease);
+    }
+    .nav-link:hover { color: var(--gold); }
+    .nav-link:hover::after { transform: scaleX(1); }
+    .nav-link.active { color: var(--gold); }
+    .nav-link.active::after { transform: scaleX(1); }
+    .nav-cta {
+      background: var(--black);
+      color: var(--white) !important;
+      padding: 11px 24px;
+      font-family: var(--font-head);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      transition: background var(--t) var(--ease);
+    }
+    .nav-cta:hover { background: var(--gold) !important; }
+    .nav-cta::after { display: none; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px; height: 36px;
+      background: none; border: none;
+      cursor: pointer; padding: 4px;
+    }
+    .hamburger span {
+      display: block; height: 2px;
+      background: var(--black);
+      border-radius: 2px;
+      transition: transform var(--t), opacity var(--t);
+    }
+    .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 74px; left: 0; right: 0;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 28px;
+      flex-direction: column;
+      gap: 22px;
+      z-index: 899;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav .nav-link { font-size: 13px; }
+    .mobile-nav .nav-cta { text-align: center; padding: 16px; font-size: 12px; }
+
+    /* ===== PAGE HERO ===== */
+    .page-hero {
+      padding-top: 74px;
+      background: var(--black);
+      padding-bottom: 60px;
+    }
+    .page-hero-inner {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 60px 28px 0;
+      text-align: center;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-head);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 16px;
+    }
+    .page-title {
+      font-family: var(--font-head);
+      font-size: clamp(32px, 5vw, 58px);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.025em;
+      line-height: 1.06;
+      color: var(--white);
+      margin-bottom: 18px;
+    }
+    .page-title span { color: var(--gold-light); }
+    .page-subtitle {
+      font-size: 16px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    /* ===== FILTER BAR ===== */
+    .filter-bar {
+      background: var(--light-gray);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      font-family: var(--font-head);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 9px 20px;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      color: var(--mid-gray);
+      cursor: pointer;
+      transition: all var(--t) var(--ease);
+    }
+    .filter-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .filter-btn.active {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--white);
+    }
+
+    /* ===== GALLERY GRID ===== */
+    .gallery-section { padding: 48px 0 80px; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: var(--dark-gray);
+      cursor: pointer;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.55s var(--ease);
+    }
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.3s var(--ease);
+      display: flex;
+      align-items: flex-end;
+      padding: 22px 20px;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-info { flex: 1; }
+    .gallery-name {
+      font-family: var(--font-head);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 1.2;
+    }
+    .gallery-tag {
+      font-family: var(--font-head);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-top: 4px;
+    }
+    .gallery-zoom {
+      width: 36px; height: 36px;
+      border: 1.5px solid rgba(255,255,255,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .gallery-item[data-hidden="true"] { display: none; }
+
+    /* ===== LIGHTBOX ===== */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(5,5,5,0.96);
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-inner {
+      position: relative;
+      max-width: 1100px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .lightbox-img {
+      max-height: 80vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      box-shadow: 0 20px 80px rgba(0,0,0,0.6);
+    }
+    .lightbox-caption {
+      margin-top: 18px;
+      text-align: center;
+    }
+    .lightbox-caption .lb-name {
+      font-family: var(--font-head);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .lightbox-caption .lb-tag {
+      font-size: 11px;
+      color: var(--gold-light);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+    .lightbox-close {
+      position: fixed;
+      top: 24px; right: 28px;
+      background: none;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      color: var(--white);
+      width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      font-size: 20px;
+      transition: border-color var(--t), background var(--t);
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.1); border-color: var(--white); }
+    .lightbox-prev,
+    .lightbox-next {
+      position: fixed;
+      top: 50%; transform: translateY(-50%);
+      background: none;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      color: var(--white);
+      width: 50px; height: 50px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: border-color var(--t), background var(--t);
+    }
+    .lightbox-prev { left: 20px; }
+    .lightbox-next { right: 20px; }
+    .lightbox-prev:hover,
+    .lightbox-next:hover { background: rgba(255,255,255,0.1); border-color: var(--white); }
+    .lightbox-counter {
+      position: fixed;
+      bottom: 24px; left: 50%; transform: translateX(-50%);
+      font-family: var(--font-head);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ===== FOOTER ===== */
+    .site-footer { background: var(--black); }
+    .footer-top {
+      padding: 80px 0 64px;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 56px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .ft-brand-name {
+      font-family: var(--font-head);
+      font-size: 13.5px; font-weight: 900;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      color: var(--white); line-height: 1.2;
+    }
+    .ft-brand-sub {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold-light); margin: 4px 0 20px;
+    }
+    .ft-brand-p {
+      font-size: 14px; color: rgba(255,255,255,0.42);
+      line-height: 1.75; margin-bottom: 24px;
+    }
+    .ft-phone {
+      font-family: var(--font-head); font-size: 20px;
+      font-weight: 800; color: var(--white);
+      letter-spacing: -0.01em; display: block; margin-bottom: 6px;
+    }
+    .ft-phone:hover { color: var(--gold-light); }
+    .ft-email { font-size: 13px; color: rgba(255,255,255,0.45); }
+    .ft-email:hover { color: var(--gold-light); }
+    .footer-col h4 {
+      font-family: var(--font-head); font-size: 10px;
+      font-weight: 800; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--white);
+      margin-bottom: 22px; padding-bottom: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 11px; }
+    .footer-col ul li a {
+      font-size: 13.5px; color: rgba(255,255,255,0.45);
+      transition: color var(--t);
+    }
+    .footer-col ul li a:hover { color: var(--gold-light); }
+    .footer-bottom {
+      padding: 22px 0;
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 16px;
+    }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.28); }
+    .footer-lic  { font-size: 12px; color: rgba(255,255,255,0.28); }
+    .footer-lic span { color: var(--gold-light); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1100px) {
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+    }
+    @media (max-width: 960px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .main-nav  { display: none; }
+      .hamburger { display: flex; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 5px; padding: 0 16px; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .lightbox-prev { left: 8px; }
+      .lightbox-next { right: 8px; }
+    }
+    @media (max-width: 480px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header class="site-header" id="siteHeader">
+  <div class="container">
+    <div class="header-inner">
+      <a href="index.html" class="logo" aria-label="Countrywide Development & Contracting home">
+        <span class="logo-main">Countrywide Development</span>
+        <span class="logo-sub">&amp; Contracting, Inc. &nbsp;·&nbsp; Since 1990</span>
+      </a>
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a href="index.html"           class="nav-link">Home</a>
+        <a href="index.html#services"  class="nav-link">Services</a>
+        <a href="index.html#about"     class="nav-link">About</a>
+        <a href="index.html#process"   class="nav-link">Process</a>
+        <a href="gallery.html"         class="nav-link active">Gallery</a>
+        <a href="index.html#contact"   class="nav-link nav-cta">Free Estimate</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+    <a href="index.html"          class="nav-link">Home</a>
+    <a href="index.html#services" class="nav-link">Services</a>
+    <a href="index.html#about"    class="nav-link">About</a>
+    <a href="index.html#process"  class="nav-link">Process</a>
+    <a href="gallery.html"        class="nav-link active">Gallery</a>
+    <a href="index.html#contact"  class="nav-link nav-cta">Free Estimate</a>
+  </nav>
+</header>
+
+
+<!-- ========== PAGE HERO ========== -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="eyebrow">Our Work</div>
+    <h1 class="page-title">Project <span>Gallery</span></h1>
+    <p class="page-subtitle">Real projects built by our crews across Los Angeles County and Southern California — commercial, restaurant, and residential.</p>
+  </div>
+</div>
+
+
+<!-- ========== FILTER BAR ========== -->
+<div class="filter-bar" role="group" aria-label="Filter projects by type">
+  <button class="filter-btn active" data-filter="all">All Projects</button>
+  <button class="filter-btn" data-filter="commercial">Commercial</button>
+  <button class="filter-btn" data-filter="restaurant">Restaurant</button>
+  <button class="filter-btn" data-filter="residential">Residential</button>
+  <button class="filter-btn" data-filter="construction">Construction</button>
+</div>
+
+
+<!-- ========== GALLERY ========== -->
+<div class="gallery-section">
+  <div class="gallery-grid" id="galleryGrid" role="list">
+
+    <div class="gallery-item" data-category="commercial" data-name="Inglewood" data-tag="Commercial" data-src="https://www.countrywidedevelopment.com/images/73478_0.jpg" role="listitem" tabindex="0" aria-label="View Inglewood project photo">
+      <img src="https://www.countrywidedevelopment.com/images/73478_0.jpg" alt="Inglewood commercial project by Countrywide Development & Contracting" loading="lazy">
+      <div class="gallery-overlay">
+        <div class="gallery-info">
+          <div class="gallery-name">Inglewood</div>
+          <div class="gallery-tag">Commercial</div>
+        </div>
+        <div class="gallery-zoom" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-category="commercial" data-name="Inglewood" data-tag="Commercial" data-src="https://www.countrywidedevelopment.com/images/73477_0.jpg" role="listitem" tabindex="0" aria-label="View Inglewood project photo">
+      <img src="https://www.countrywidedevelopment.com/images/73477_0.jpg" alt="Inglewood commercial project by Countrywide Development & Contracting" loading="lazy">
+      <div class="gallery-overlay">
+        <div class="gallery-info">
+          <div class="gallery-name">Inglewood</div>
+          <div class="gallery-tag">Commercial</div>
+        </div>
+        <div class="gallery-zoom" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-category="construction" data-name="Firmona" data-tag="Construction" data-src="https://www.countrywidedevelopment.com/images/73476_0.jpg" role="listitem" tabindex="0" aria-label="View Firmona project photo">
+      <img src="https://www.countrywidedevelopment.com/images/73476_0.jpg" alt="Firmona construction project by Countrywide Development & Contracting" loading="lazy">
+      <div class="gallery-overlay">
+        <div class="gallery-info">
+          <div class="gallery-name">Firmona</div>
+          <div class="gallery-tag">Construction</div>
+        </div>
+        <div class="gallery-zoom" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-category="construction" data-name="Firmona" data-tag="Construction" data-src="https://www.countrywidedevelopment.com/images/73475_0.jpg" role="listitem" tabindex="0" aria-label="View Firmona project photo">
+      <img src="https://www.countrywidedevelopment.com/images/73475_0.jpg" alt="Firmona construction project by Countrywide Development & Contracting" loading="lazy">
+      <div class="gallery-overlay">
+        <div class="gallery-info">
+          <div class="gallery-name">Firmona</div>
+          <div class="gallery-tag">Construction</div>
+        </div>
+        <div class="gallery-zoom" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-category="commercial" data-name="El Segundo" data-tag="Commercial" data-src="https://www.countrywidedevelopment.com/images/73474_0.jpg" role="listitem" tabindex="0" aria-label="View El Segundo project photo">
+      <img src="https://www.countrywidedevelopment.com/images/73474_0.jpg" alt="El Segundo commercial project by Countrywide Development & Contracting" loading="lazy">
+      <div class="gallery-overlay">
+        <div class="gallery-info">
+          <div class="gallery-name">El Segundo</div>
+          <div class="gallery-tag">Commercial</div>
+        </div>
+        <div class="gallery-zoom" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-category="commercial" data-name="El Segundo" data-tag="Commercial" data-src="https://www.countrywidedevelopment.com/images/73473_0.jpg" role="listitem" tabindex="0" aria-label="View El Segundo project photo">
+      <img src="https://www.countrywidedevelopment.com/images/73473_0.jpg" alt="El Segundo commercial project by Countrywide Development & Contracting" loading="lazy">
+      <div class="gallery-overlay">
+        <div class="gallery-info">
+          <div class="gallery-name">El Segundo</div>
+          <div class="gallery-tag">Commercial</div>
+        </div>
+        <div class="gallery-zoom" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-category="construction" data-name="Downey" data-tag="Construction" data-src="https://www.countrywidedevelopment.com/images/73472_0.jpg" role="listitem" tabindex="0" aria-label="View Downey project photo">
+      <img src="https://www.countrywidedevelopment.com/images/73472_0.jpg" alt="Downey construction project by Countrywide Development & Contracting" loading="lazy">
+      <div class="gallery-overlay">
+        <div class="gallery-info">
+          <div class="gallery-name">Downey</div>
+          <div class="gallery-tag">Construction</div>
+        </div>
+        <div class="gallery-zoom" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-category="construction" data-name="Downey" data-tag="Construction" data-src="https://www.countrywidedevelopment.com/images/73471_0.jpg" role="listitem" tabindex="0" aria-label="View Downey project photo">
+      <img src="https://www.countrywidedevelopment.com/images/73471_0.jpg" alt="Downey construction project by Countrywide Development & Contracting" loading="lazy">
+      <div class="gallery-overlay">
+        <div class="gallery-info">
+          <div class="gallery-name">Downey</div>
+          <div class="gallery-tag">Construction</div>
+        </div>
+        <div class="gallery-zoom" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-category="construction" data-name="Downey" data-tag="Construction" data-src="https://www.countrywidedevelopment.com/images/73470_0.jpg" role="listitem" tabindex="0" aria-label="View Downey project photo">
+      <img src="https://www.countrywidedevelopment.com/images/73470_0.jpg" alt="Downey construction project by Countrywide Development & Contracting" loading="lazy">
+      <div class="gallery-overlay">
+        <div class="gallery-info">
+          <div class="gallery-name">Downey</div>
+          <div class="gallery-tag">Construction</div>
+        </div>
+        <div class="gallery-zoom" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-category="construction" data-name="Downey" data-tag="Construction" data-src="https://www.countrywidedevelopment.com/images/73469_0.jpg" role="listitem" tabindex="0" aria-label="View Downey project photo">
+      <img src="https://www.countrywidedevelopment.com/images/73469_0.jpg" alt="Downey construction project by Countrywide Development & Contracting" loading="lazy">
+      <div class="gallery-overlay">
+        <div class="gallery-info">
+          <div class="gallery-name">Downey</div>
+          <div class="gallery-tag">Construction</div>
+        </div>
+        <div class="gallery-zoom" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-category="construction" data-name="Downey" data-tag="Construction" data-src="https://www.countrywidedevelopment.com/images/73468_0.jpg" role="listitem" tabindex="0" aria-label="View Downey project photo">
+      <img src="https://www.countrywidedevelopment.com/images/73468_0.jpg" alt="Downey construction project by Countrywide Development & Contracting" loading="lazy">
+      <div class="gallery-overlay">
+        <div class="gallery-info">
+          <div class="gallery-name">Downey</div>
+          <div class="gallery-tag">Construction</div>
+        </div>
+        <div class="gallery-zoom" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-category="restaurant" data-name="Maison" data-tag="Restaurant" data-src="https://www.countrywidedevelopment.com/images/73467_0.jpg" role="listitem" tabindex="0" aria-label="View Maison project photo">
+      <img src="https://www.countrywidedevelopment.com/images/73467_0.jpg" alt="Maison restaurant project by Countrywide Development & Contracting" loading="lazy">
+      <div class="gallery-overlay">
+        <div class="gallery-info">
+          <div class="gallery-name">Maison</div>
+          <div class="gallery-tag">Restaurant</div>
+        </div>
+        <div class="gallery-zoom" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-category="restaurant" data-name="Evy" data-tag="Restaurant" data-src="https://www.countrywidedevelopment.com/images/73466_0.jpg" role="listitem" tabindex="0" aria-label="View Evy project photo">
+      <img src="https://www.countrywidedevelopment.com/images/73466_0.jpg" alt="Evy restaurant project by Countrywide Development & Contracting" loading="lazy">
+      <div class="gallery-overlay">
+        <div class="gallery-info">
+          <div class="gallery-name">Evy</div>
+          <div class="gallery-tag">Restaurant</div>
+        </div>
+        <div class="gallery-zoom" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-category="restaurant" data-name="Deli Boys" data-tag="Restaurant" data-src="https://www.countrywidedevelopment.com/images/73465_0.jpg" role="listitem" tabindex="0" aria-label="View Deli Boys project photo">
+      <img src="https://www.countrywidedevelopment.com/images/73465_0.jpg" alt="Deli Boys restaurant project by Countrywide Development & Contracting" loading="lazy">
+      <div class="gallery-overlay">
+        <div class="gallery-info">
+          <div class="gallery-name">Deli Boys</div>
+          <div class="gallery-tag">Restaurant</div>
+        </div>
+        <div class="gallery-zoom" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-category="commercial" data-name="Carlton" data-tag="Commercial" data-src="https://www.countrywidedevelopment.com/images/73464_0.jpg" role="listitem" tabindex="0" aria-label="View Carlton project photo">
+      <img src="https://www.countrywidedevelopment.com/images/73464_0.jpg" alt="Carlton commercial project by Countrywide Development & Contracting" loading="lazy">
+      <div class="gallery-overlay">
+        <div class="gallery-info">
+          <div class="gallery-name">Carlton</div>
+          <div class="gallery-tag">Commercial</div>
+        </div>
+        <div class="gallery-zoom" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-category="restaurant" data-name="BJ's" data-tag="Restaurant" data-src="https://www.countrywidedevelopment.com/images/73463_0.jpg" role="listitem" tabindex="0" aria-label="View BJ's project photo">
+      <img src="https://www.countrywidedevelopment.com/images/73463_0.jpg" alt="BJ's restaurant project by Countrywide Development & Contracting" loading="lazy">
+      <div class="gallery-overlay">
+        <div class="gallery-info">
+          <div class="gallery-name">BJ's</div>
+          <div class="gallery-tag">Restaurant</div>
+        </div>
+        <div class="gallery-zoom" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-category="residential" data-name="Betsy" data-tag="Residential" data-src="https://www.countrywidedevelopment.com/images/73462_0.jpg" role="listitem" tabindex="0" aria-label="View Betsy project photo">
+      <img src="https://www.countrywidedevelopment.com/images/73462_0.jpg" alt="Betsy residential project by Countrywide Development & Contracting" loading="lazy">
+      <div class="gallery-overlay">
+        <div class="gallery-info">
+          <div class="gallery-name">Betsy</div>
+          <div class="gallery-tag">Residential</div>
+        </div>
+        <div class="gallery-zoom" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-category="commercial" data-name="Baracci" data-tag="Commercial" data-src="https://www.countrywidedevelopment.com/images/73461_0.jpg" role="listitem" tabindex="0" aria-label="View Baracci project photo">
+      <img src="https://www.countrywidedevelopment.com/images/73461_0.jpg" alt="Baracci commercial project by Countrywide Development & Contracting" loading="lazy">
+      <div class="gallery-overlay">
+        <div class="gallery-info">
+          <div class="gallery-name">Baracci</div>
+          <div class="gallery-tag">Commercial</div>
+        </div>
+        <div class="gallery-zoom" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-category="commercial" data-name="Red Earth" data-tag="Commercial" data-src="https://www.countrywidedevelopment.com/images/73460_0.jpg" role="listitem" tabindex="0" aria-label="View Red Earth project photo">
+      <img src="https://www.countrywidedevelopment.com/images/73460_0.jpg" alt="Red Earth commercial project by Countrywide Development & Contracting" loading="lazy">
+      <div class="gallery-overlay">
+        <div class="gallery-info">
+          <div class="gallery-name">Red Earth</div>
+          <div class="gallery-tag">Commercial</div>
+        </div>
+        <div class="gallery-zoom" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ========== LIGHTBOX ========== -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Project photo viewer">
+  <div class="lightbox-inner">
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    <div class="lightbox-caption">
+      <div class="lb-name" id="lbName"></div>
+      <div class="lb-tag"  id="lbTag"></div>
+    </div>
+  </div>
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close photo viewer">&#x2715;</button>
+  <button class="lightbox-prev"  id="lightboxPrev"  aria-label="Previous photo">&#8592;</button>
+  <button class="lightbox-next"  id="lightboxNext"  aria-label="Next photo">&#8594;</button>
+  <div class="lightbox-counter" id="lightboxCounter"></div>
+</div>
+
+
+<!-- ========== FOOTER ========== -->
+<footer class="site-footer" aria-label="Site footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <p class="ft-brand-name">Countrywide Development<br>&amp; Contracting, Inc.</p>
+        <p class="ft-brand-sub">CDC, Inc. · Design-Build General Contractors</p>
+        <p class="ft-brand-p">A full-service design-build general contracting and developing firm serving Los Angeles County and Southern California for over 30 years.</p>
+        <a href="tel:3106446344" class="ft-phone">310-644-6344</a>
+        <a href="mailto:info@countrywidedevelopment.com" class="ft-email">info@countrywidedevelopment.com</a>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="index.html#services">Commercial Construction</a></li>
+          <li><a href="index.html#services">Design Build</a></li>
+          <li><a href="index.html#services">Tenant Improvement</a></li>
+          <li><a href="index.html#services">Restaurant Remodeling</a></li>
+          <li><a href="index.html#services">Residential Construction</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="index.html#about">About CDC, Inc.</a></li>
+          <li><a href="index.html#why">Why Choose Us</a></li>
+          <li><a href="index.html#process">Our Process</a></li>
+          <li><a href="gallery.html">Photo Gallery</a></li>
+          <li><a href="index.html#contact">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:3106446344">310-644-6344</a></li>
+          <li><a href="mailto:info@countrywidedevelopment.com">info@countrywidedevelopment.com</a></li>
+          <li><a href="#">4633 W. 156th Street,<br>Lawndale, CA 90260</a></li>
+          <li><a href="index.html#contact">Mon–Fri: 10am – 5pm</a></li>
+          <li><a href="index.html#contact">Weekends by Appointment</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2024 Countrywide Development &amp; Contracting, Inc. All rights reserved.</p>
+      <p class="footer-lic">CSLB <span>#800028</span> · Licensed, Bonded &amp; Insured · Southern California</p>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+(function () {
+  'use strict';
+
+  // Sticky header
+  var header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', function () {
+    header.classList.toggle('scrolled', window.scrollY > 30);
+  }, { passive: true });
+
+  // Hamburger
+  var hamburger = document.getElementById('hamburger');
+  var mobileNav = document.getElementById('mobileNav');
+  hamburger.addEventListener('click', function () {
+    var open = mobileNav.classList.toggle('open');
+    hamburger.classList.toggle('active', open);
+    hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  mobileNav.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      mobileNav.classList.remove('open');
+      hamburger.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Filter
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var allItems   = document.querySelectorAll('.gallery-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var filter = btn.getAttribute('data-filter');
+      allItems.forEach(function (item) {
+        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+          item.removeAttribute('data-hidden');
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+      updateVisibleItems();
+    });
+  });
+
+  // Lightbox
+  var lightbox     = document.getElementById('lightbox');
+  var lbImg        = document.getElementById('lightboxImg');
+  var lbName       = document.getElementById('lbName');
+  var lbTag        = document.getElementById('lbTag');
+  var lbCounter    = document.getElementById('lightboxCounter');
+  var lbClose      = document.getElementById('lightboxClose');
+  var lbPrev       = document.getElementById('lightboxPrev');
+  var lbNext       = document.getElementById('lightboxNext');
+
+  var visibleItems = [];
+  var currentIndex = 0;
+
+  function updateVisibleItems() {
+    visibleItems = Array.from(allItems).filter(function (el) {
+      return el.style.display !== 'none';
+    });
+  }
+  updateVisibleItems();
+
+  function openLightbox(index) {
+    currentIndex = index;
+    var item = visibleItems[currentIndex];
+    lbImg.src  = item.getAttribute('data-src');
+    lbImg.alt  = item.querySelector('img').alt;
+    lbName.textContent = item.getAttribute('data-name');
+    lbTag.textContent  = item.getAttribute('data-tag');
+    lbCounter.textContent = (currentIndex + 1) + ' / ' + visibleItems.length;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+    lbImg.src = '';
+  }
+
+  function showPrev() {
+    currentIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length;
+    openLightbox(currentIndex);
+  }
+
+  function showNext() {
+    currentIndex = (currentIndex + 1) % visibleItems.length;
+    openLightbox(currentIndex);
+  }
+
+  allItems.forEach(function (item, i) {
+    item.addEventListener('click', function () {
+      updateVisibleItems();
+      var idx = visibleItems.indexOf(item);
+      if (idx !== -1) openLightbox(idx);
+    });
+    item.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        item.click();
+      }
+    });
+  });
+
+  lbClose.addEventListener('click', closeLightbox);
+  lbPrev.addEventListener('click',  showPrev);
+  lbNext.addEventListener('click',  showNext);
+
+  lightbox.addEventListener('click', function (e) {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape')     closeLightbox();
+    if (e.key === 'ArrowLeft')  showPrev();
+    if (e.key === 'ArrowRight') showNext();
+  });
+
+})();
+</script>
+
+</body>
+</html>
